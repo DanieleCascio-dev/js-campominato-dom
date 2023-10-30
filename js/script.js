@@ -93,6 +93,7 @@ function heandleCell() {
   if (bombs.includes(parseInt(this.textContent))) {
     //game over
     this.classList.add("bomb");
+    this.classList.add("white");
     explosion.play();
     gameOver();
     clickedCells = [];
@@ -105,6 +106,7 @@ function heandleCell() {
       //Display all bombs
       if (bombs.includes(parseInt(cells[i].textContent))) {
         cells[i].classList.add("bomb");
+        cells[i].classList.add("white");
       }
     }
   } else {
