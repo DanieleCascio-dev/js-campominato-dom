@@ -91,7 +91,7 @@ function generateGridCell(innerNumber) {
 function heandleCell() {
   if (bombs.includes(parseInt(this.textContent))) {
     this.classList.add("bomb");
-    gameOver();
+    /* gameOver(); */
     return;
   } else {
     this.classList.add("lightgreen");
@@ -99,7 +99,7 @@ function heandleCell() {
       clickedCells.push(this.textContent);
     }
     if (clickedCells.length === maxClick) {
-      console.log("Hai vinto!");
+      win();
     }
     console.log(clickedCells);
   }
@@ -133,7 +133,16 @@ function generateBombs(max) {
 
 function gameOver() {
   const gameOverMess = document.createElement("h2");
-  gameOverMess.innerHTML = `Game over! Hai indovinato ${clickedCells.length} numeri prima di perdere!`;
+  gameOverMess.innerHTML = `Game over! Hai indovinato ${clickedCells.length} caselle prima di perdere!`;
   gameOverMess.classList.add("game-over");
   gridElem.append(gameOverMess);
+}
+
+/* ************************* */
+
+function win() {
+  const winMess = document.createElement("h2");
+  winMess.innerHTML = `Hai vinto! Hai tutte le ${clickedCells.length} caselle!`;
+  winMess.classList.add("win");
+  gridElem.append(winMess);
 }
