@@ -54,7 +54,7 @@ playElem.addEventListener("click", function () {
 /* ************************* */
 
 /**
- * Description: Create a grif with any number of cell inside
+ * Description: Create a grid with any number of cell inside
  * @param {any} gridLenght, the number of cell you want.
  * @param {any} difficulty, the class to add to any cell.
  * @returns {any} Html element, grid with cell.
@@ -91,8 +91,12 @@ function generateGridCell(innerNumber) {
 function heandleCell() {
   if (bombs.includes(parseInt(this.textContent))) {
     this.classList.add("bomb");
-    /* gameOver(); */
-    return;
+    gameOver();
+    const cells = document.querySelectorAll(".cell");
+    console.log(cells);
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].removeEventListener("click", heandleCell);
+    }
   } else {
     this.classList.add("lightgreen");
     if (!clickedCells.includes(this.textContent)) {
