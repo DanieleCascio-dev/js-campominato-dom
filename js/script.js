@@ -90,12 +90,17 @@ function generateGridCell(innerNumber) {
  */
 function heandleCell() {
   if (bombs.includes(parseInt(this.textContent))) {
+    //game over
     this.classList.add("bomb");
     gameOver();
     const cells = document.querySelectorAll(".cell");
     console.log(cells);
+    //remove event listener
     for (let i = 0; i < cells.length; i++) {
       cells[i].removeEventListener("click", heandleCell);
+      if (bombs.includes(parseInt(cells[i].textContent))) {
+        cells[i].classList.add("bomb");
+      }
     }
   } else {
     this.classList.add("lightgreen");
@@ -103,6 +108,7 @@ function heandleCell() {
       clickedCells.push(this.textContent);
     }
     if (clickedCells.length === maxClick) {
+      //win
       win();
     }
     console.log(clickedCells);
