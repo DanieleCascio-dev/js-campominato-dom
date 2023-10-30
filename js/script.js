@@ -95,6 +95,7 @@ function heandleCell() {
     this.classList.add("bomb");
     explosion.play();
     gameOver();
+    clickedCells = [];
     const cells = document.querySelectorAll(".cell");
     // console.log(cells);
     //remove event listener

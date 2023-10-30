@@ -72,7 +72,7 @@ body {
 
 .main {
   height: calc(100% - 50px - 90px);
-  background-color: aquamarine;
+  background-color: rgb(208, 201, 196);
   padding: 1rem 0;
   position: relative;
 }
