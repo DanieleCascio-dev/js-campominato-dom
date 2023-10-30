@@ -33,9 +33,6 @@ body {
 
 /* color */
 
-.lightgreen {
-  background-color: lightgreen;
-}
 /* HEADER */
 
 .header {
@@ -121,7 +118,16 @@ body {
 }
 
 .bomb {
-  background-color: red;
+  background-image: url(../img/kisspng-bomb-bomb-5a6b3fa1bed845.1821698415169780817817.png);
+  background-position: center;
+  background-size: cover;
+  filter: opacity(80%);
+}
+.lightgreen {
+  background-image: url(../img/bouquet.png);
+  background-position: center;
+  background-size: cover;
+  filter: opacity(80%);
 }
 
 .game-over {

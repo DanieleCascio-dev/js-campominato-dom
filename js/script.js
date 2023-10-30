@@ -5,6 +5,7 @@ const gridElem = document.querySelector(".grid");
 console.log(gridElem);
 const selectElem = document.getElementById("difficulty");
 console.log(selectElem);
+const explosion = new Audio("explosion.wav");
 
 let clickedCells = [];
 let maxClick;
@@ -85,33 +86,38 @@ function generateGridCell(innerNumber) {
 /* ************************* */
 
 /**
- * Description add lightgreen class
+ * Description
  * @returns {any} none
  */
 function heandleCell() {
   if (bombs.includes(parseInt(this.textContent))) {
     //game over
     this.classList.add("bomb");
+    explosion.play();
     gameOver();
     const cells = document.querySelectorAll(".cell");
-    console.log(cells);
+    // console.log(cells);
     //remove event listener
     for (let i = 0; i < cells.length; i++) {
+      //Prevent user from click other cells
       cells[i].removeEventListener("click", heandleCell);
+      //Display all bombs
       if (bombs.includes(parseInt(cells[i].textContent))) {
         cells[i].classList.add("bomb");
       }
     }
   } else {
     this.classList.add("lightgreen");
+    //Check if user alraedy click on the cell
     if (!clickedCells.includes(this.textContent)) {
+      //if not add the cell to the array clickedCells
       clickedCells.push(this.textContent);
     }
     if (clickedCells.length === maxClick) {
       //win
       win();
     }
-    console.log(clickedCells);
+    // console.log(clickedCells);
   }
 }
 
@@ -140,7 +146,7 @@ function generateBombs(max) {
 }
 
 /* ************************* */
-
+//When the user lose the game
 function gameOver() {
   const gameOverMess = document.createElement("h2");
   gameOverMess.innerHTML = `Game over! Hai indovinato ${clickedCells.length} caselle prima di perdere!`;
@@ -149,7 +155,7 @@ function gameOver() {
 }
 
 /* ************************* */
-
+//When the user won the game
 function win() {
   const winMess = document.createElement("h2");
   winMess.innerHTML = `Hai vinto! Hai tutte le ${clickedCells.length} caselle!`;
