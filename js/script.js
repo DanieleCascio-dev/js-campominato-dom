@@ -122,7 +122,7 @@ function heandleCell() {
       }
     }
   } else {
-    this.classList.add("lightgreen");
+    this.classList.add("flower");
     //Check if user alraedy click on the cell
     if (!clickedCells.includes(this.textContent)) {
       //if not add the cell to the array clickedCells
