@@ -15,7 +15,10 @@ playElem.addEventListener("click", function () {
   switch (selectElem.value) {
     //Easy grid 10x10
     case "easy":
+      //reset grid and click counter
       gridElem.innerHTML = "";
+      clickedCells = [];
+
       bombs = generateBombs(100);
       maxClick = 100 - bombs.length;
       console.log(bombs);
@@ -24,7 +27,10 @@ playElem.addEventListener("click", function () {
       break;
     // Medium grid 9x9
     case "medium":
+      //reset grid and click counter
       gridElem.innerHTML = "";
+      clickedCells = [];
+
       bombs = generateBombs(81);
       console.log(bombs);
       maxClick = 81 - bombs.length;
@@ -33,7 +39,10 @@ playElem.addEventListener("click", function () {
       break;
     //Hard grid
     case "hard":
+      //reset grid and click counter
       gridElem.innerHTML = "";
+      clickedCells = [];
+
       bombs = generateBombs(49);
       console.log(bombs);
       maxClick = 49 - bombs.length;
@@ -42,7 +51,10 @@ playElem.addEventListener("click", function () {
       break;
 
     default:
+      //reset grid and click counter
       gridElem.innerHTML = "";
+      clickedCells = [];
+
       bombs = generateBombs(100);
       console.log(bombs);
       maxClick = 100 - bombs.length;
