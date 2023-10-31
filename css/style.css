@@ -134,6 +134,10 @@ body {
   color: #fff;
 }
 
+.danger {
+  background-color: orangered;
+}
+
 .game-over {
   text-align: center;
   position: absolute;

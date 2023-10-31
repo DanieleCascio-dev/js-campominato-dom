@@ -10,6 +10,7 @@ const explosion = new Audio("explosion.wav");
 let clickedCells = [];
 let maxClick;
 let bombs;
+let gridSize;
 //logic
 playElem.addEventListener("click", function () {
   switch (selectElem.value) {
@@ -18,11 +19,12 @@ playElem.addEventListener("click", function () {
       //reset grid and click counter
       gridElem.innerHTML = "";
       clickedCells = [];
+      gridSize = 100;
 
-      bombs = generateBombs(100);
-      maxClick = 100 - bombs.length;
+      bombs = generateBombs(gridSize);
+      maxClick = gridSize - bombs.length;
       console.log(bombs);
-      generateAnyGrid(100, "easy");
+      generateAnyGrid(gridSize, "easy");
 
       break;
     // Medium grid 9x9
@@ -30,11 +32,12 @@ playElem.addEventListener("click", function () {
       //reset grid and click counter
       gridElem.innerHTML = "";
       clickedCells = [];
+      gridSize = 81;
 
-      bombs = generateBombs(81);
+      bombs = generateBombs(gridSize);
       console.log(bombs);
-      maxClick = 81 - bombs.length;
-      generateAnyGrid(81, "medium");
+      maxClick = gridSize - bombs.length;
+      generateAnyGrid(gridSize, "medium");
 
       break;
     //Hard grid
@@ -42,11 +45,12 @@ playElem.addEventListener("click", function () {
       //reset grid and click counter
       gridElem.innerHTML = "";
       clickedCells = [];
+      gridSize = 49;
 
-      bombs = generateBombs(49);
+      bombs = generateBombs(gridSize);
       console.log(bombs);
-      maxClick = 49 - bombs.length;
-      generateAnyGrid(49, "hard");
+      maxClick = gridSize - bombs.length;
+      generateAnyGrid(gridSize, "hard");
 
       break;
 
@@ -54,11 +58,12 @@ playElem.addEventListener("click", function () {
       //reset grid and click counter
       gridElem.innerHTML = "";
       clickedCells = [];
+      gridSize = 100;
 
-      bombs = generateBombs(100);
+      bombs = generateBombs(gridSize);
       console.log(bombs);
-      maxClick = 100 - bombs.length;
-      generateAnyGrid(100, "easy");
+      maxClick = gridSize - bombs.length;
+      generateAnyGrid(gridSize, "easy");
   }
 });
 
@@ -123,6 +128,39 @@ function heandleCell() {
     }
   } else {
     this.classList.add("flower");
+    const cells = document.querySelectorAll(".cell");
+    const curNum = parseInt(this.textContent);
+    if (
+      (gridSize === 100 && bombs.includes(curNum + 10)) ||
+      bombs.includes(curNum - 10) ||
+      bombs.includes(curNum + 1) ||
+      bombs.includes(curNum - 1) ||
+      bombs.includes(curNum + 11) ||
+      bombs.includes(curNum - 11)
+    ) {
+      this.classList.add("danger");
+    }
+    if (
+      (gridSize === 81 && bombs.includes(curNum + 9)) ||
+      bombs.includes(curNum - 9) ||
+      bombs.includes(curNum + 1) ||
+      bombs.includes(curNum - 1) ||
+      bombs.includes(curNum + 10) ||
+      bombs.includes(curNum - 10)
+    ) {
+      this.classList.add("danger");
+    }
+    if (
+      (gridSize === 49 && bombs.includes(curNum + 7)) ||
+      bombs.includes(curNum - 7) ||
+      bombs.includes(curNum + 1) ||
+      bombs.includes(curNum - 1) ||
+      bombs.includes(curNum + 8) ||
+      bombs.includes(curNum - 8)
+    ) {
+      this.classList.add("danger");
+    }
+
     //Check if user alraedy click on the cell
     if (!clickedCells.includes(this.textContent)) {
       //if not add the cell to the array clickedCells
